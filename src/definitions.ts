@@ -1,3 +1,4 @@
+import { AppAction } from './app-action';
 export interface AppActionsPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  set(actions: AppAction[]): Promise<void>
 }

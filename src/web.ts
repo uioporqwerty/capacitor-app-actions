@@ -1,10 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
+import { AppAction } from './app-action';
 
 import type { AppActionsPlugin } from './definitions';
 
 export class AppActionsWeb extends WebPlugin implements AppActionsPlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  set(actions: AppAction[]): Promise<void> {
+    return Promise.resolve();
   }
 }

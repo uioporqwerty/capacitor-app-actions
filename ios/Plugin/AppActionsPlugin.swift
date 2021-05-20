@@ -1,18 +1,15 @@
 import Foundation
 import Capacitor
 
-/**
- * Please read the Capacitor iOS Plugin Development Guide
- * here: https://capacitorjs.com/docs/plugins/ios
- */
 @objc(AppActionsPlugin)
 public class AppActionsPlugin: CAPPlugin {
     private let implementation = AppActions()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func set(_ call: CAPPluginCall) {
+        if let actions = call.getArray("actions")?.capacitor.replacingNullValues() as? [String?] {
+            print(actions)
+        }
+        
+        call.resolve()
     }
 }

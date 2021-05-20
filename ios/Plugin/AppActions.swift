@@ -1,7 +1,7 @@
 import Foundation
 
 @objc public class AppActions: NSObject {
-    @objc public func echo(_ value: String) -> String {
+    @objc public func set(_ value: String) -> String {
         return value
     }
 }
