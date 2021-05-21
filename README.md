@@ -32,7 +32,18 @@ npx cap sync
 
 ## Configuration
 
-TODO
+iOS:
+
+Add the following to `AppDelegate.swift`. This snippet allows the plugin to recognize when an app action has been selected so that you can respond to those events.
+
+```swift
+func application(_ application: UIApplication,
+                   performActionFor shortcutItem: UIApplicationShortcutItem,
+                   completionHandler: @escaping (Bool) -> Void)
+{
+    NotificationCenter.default.post(name: NSNotification.Name("appActionReceived"), object: nil, userInfo: ["actionId" : shortcutItem.type])
+}
+```
 
 ## Usage
 
