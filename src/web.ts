@@ -1,10 +1,9 @@
 import { PluginListenerHandle, WebPlugin } from '@capacitor/core';
-import { AppAction } from './app-action';
 
-import type { AppActionsPlugin } from './definitions';
+import type { AddAppActionOptions, AppActionsPlugin } from './definitions';
 
 export class AppActionsWeb extends WebPlugin implements AppActionsPlugin {
-  set(actions: AppAction[]): Promise<void> {
+  set(options: AddAppActionOptions): Promise<void> {
     throw new Error('Method not implemented.');
   }
 
