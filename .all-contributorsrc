@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "uioporqwerty",
+      "name": "Nitish Sachar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4053751?v=4",
+      "profile": "https://github.com/uioporqwerty",
+      "contributions": [
+        "maintenance",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 1,
+  "projectName": "app-actions",
+  "projectOwner": "uioporqwerty",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
