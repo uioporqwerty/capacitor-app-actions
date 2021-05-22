@@ -1,0 +1,52 @@
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+name: Plugin CI
+jobs:
+  ios:
+    name: iOS Build and Test
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        destination:
+          - "platform=iOS Simulator,OS=14.4,name=iPhone 8"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+          
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: Build NPM Module
+        run: npm run build
+
+  android:
+    name: Android Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: "zulu"
+          java-version: "8"
+
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: Build NPM Module
+        run: npm run build
