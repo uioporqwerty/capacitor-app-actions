@@ -26,7 +26,7 @@
 ## Installation
 
 ```bash
-npm install @capacitor-community/app-actions
+npm install capacitor-app-actions
 npx cap sync
 ```
 
