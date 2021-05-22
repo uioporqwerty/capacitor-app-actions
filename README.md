@@ -32,6 +32,10 @@ npx cap sync
 
 ## Configuration
 
+Android:
+
+No additional configuration required.
+
 iOS:
 
 Add the following to `AppDelegate.swift`. This snippet allows the plugin to recognize when an app action has been selected so that you can respond to those events.
