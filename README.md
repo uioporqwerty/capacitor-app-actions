@@ -52,8 +52,23 @@ func application(_ application: UIApplication,
 
 ## Usage
 
-TODO
+Typically app actions are added at application startup, but you can add them where appropriate:
 
+```
+import { AppActions } from 'capacitor-app-actions'
+
+await Capacitor.Plugins.AppActions.set({ "actions": [ 
+    { id: "order", title: "Order", subtitle: "Place an Order", icon: "star.fill" }, 
+    { id: "locations", title: "Find location", subtitle: "Find nearby location", icon: "star.fill"}
+  ]});
+```
+Listen to an event triggered by an existing app action:
+
+```
+AppActions.addListener("order", (info) => {
+    // Do your in app work. Navigate to the appropriate page or trigger other in app actions.
+  });
+```
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
