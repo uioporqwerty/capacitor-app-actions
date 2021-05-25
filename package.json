@@ -1,6 +1,6 @@
 {
   "name": "capacitor-app-actions",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "iOS and Android Capacitor plugin for App Actions",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
