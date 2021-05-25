@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/maintenance/yes/2020?style=flat-square" />
+  <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square" />
   <a href="https://github.com/uioporqwerty/app-actions/actions?query=workflow%3A%22Plugin-CI%22"><img src="https://img.shields.io/github/workflow/status/uioporqwerty/app-actions/Plugin-CI?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/capacitor-app-actions"><img src="https://img.shields.io/npm/l/capacitor-app-actions?style=flat-square" /></a>
 <br>
