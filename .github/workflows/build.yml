@@ -3,7 +3,7 @@ on:
     branches: [main]
     tags:
       - '*'
-name: Plugin CI
+name: Plugin-CI
 jobs:
   build_publish:
     name: Build and Publish
