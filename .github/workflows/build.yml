@@ -1,10 +1,8 @@
 on:
   push:
-    branches: [develop]
+    branches: [main]
     tags:
       - '*'
-  pull_request:
-    branches: [develop]
 name: Plugin CI
 jobs:
   build_publish:
