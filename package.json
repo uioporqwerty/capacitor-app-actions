@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uioporqwerty/app-actions.git"
+    "url": "git+https://github.com/uioporqwerty/capacitor-app-actions.git"
   },
   "bugs": {
-    "url": "https://github.com/uioporqwerty/app-actions/issues"
+    "url": "https://github.com/uioporqwerty/capacitor-app-actions/issues"
   },
   "keywords": [
     "capacitor",
