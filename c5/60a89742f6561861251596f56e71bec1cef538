@@ -1,0 +1,28 @@
+scripts/e2e-android.sh
+  s_dea26f5f9de4d0::t_ce3d08cd8d6e18 1-63
+.github/workflows/build.yml
+  s_dea26f5f9de4d0::t_f0171a198768fa 14-108,110-111,113-115
+android/build.gradle
+  s_dea26f5f9de4d0::t_cb0200f5ca9760 71-72
+  s_dea26f5f9de4d0::t_2f6d9606f6e90e 48-52
+android/src/test/java/com/getcapacitor/community/appactions/AppActionsTest.kt
+  s_dea26f5f9de4d0::t_57d1b2ec3c1641 46-47,49-52
+  s_dea26f5f9de4d0::t_7271de799e10f4 1-10,12-45,48,53-81
+  s_dea26f5f9de4d0::t_b5e23e365883b7 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "c560a89742f6561861251596f56e71bec1cef538",
+  "prompts": {},
+  "sessions": {
+    "s_dea26f5f9de4d0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ec51941-ffa3-4865-8935-ecc0dd49b29f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "uioporqwerty <nitish.sachar@protonmail.com>"
+    }
+  }
+}
