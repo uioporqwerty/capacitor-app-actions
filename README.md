@@ -7,8 +7,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square" />
-  <a href="https://github.com/uioporqwerty/capacitor-app-actions/actions?query=workflow%3A%22Plugin-CI%22"><img src="https://img.shields.io/github/workflow/status/uioporqwerty/capacitor-app-actions/Plugin-CI?style=flat-square" /></a>
+  <img src="https://img.shields.io/maintenance/yes/2026?style=flat-square" />
+  <a href="https://github.com/uioporqwerty/capacitor-app-actions/actions?query=workflow%3A%22Plugin-CI%22"><img src="https://img.shields.io/github/actions/workflow/status/uioporqwerty/capacitor-app-actions/build.yml?branch=main&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/capacitor-app-actions"><img src="https://img.shields.io/npm/l/capacitor-app-actions?style=flat-square" /></a>
 <br>
   <a href="https://www.npmjs.com/package/capacitor-app-actions"><img src="https://img.shields.io/npm/dw/capacitor-app-actions?style=flat-square" /></a>
@@ -54,20 +54,23 @@ func application(_ application: UIApplication,
 
 Typically app actions are added at application startup, but you can add them where appropriate:
 
-```
-import { AppActions } from 'capacitor-app-actions'
+```ts
+import { AppActions } from 'capacitor-app-actions';
 
-await Capacitor.Plugins.AppActions.set({ "actions": [ 
-    { id: "order", title: "Order", subtitle: "Place an Order", icon: "star.fill" }, 
-    { id: "locations", title: "Find location", subtitle: "Find nearby location", icon: "star.fill"}
-  ]});
+await AppActions.set({
+  actions: [
+    { id: 'order', title: 'Order', subtitle: 'Place an Order', icon: 'star.fill' },
+    { id: 'locations', title: 'Find location', subtitle: 'Find nearby location', icon: 'star.fill' },
+  ],
+});
 ```
+
 Listen to an event triggered by an existing app action:
 
-```
-AppActions.addListener("order", (info) => {
-    // Do your in app work. Navigate to the appropriate page or trigger other in app actions.
-  });
+```ts
+AppActions.addListener('order', (info) => {
+  // Do your in app work. Navigate to the appropriate page or trigger other in app actions.
+});
 ```
 ## Contributors ✨
 
