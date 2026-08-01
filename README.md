@@ -6,8 +6,15 @@
   Capacitor iOS and Android Plugin for App Actions
 </p>
 
+> [!WARNING]
+> **This plugin is deprecated and no longer actively developed.**
+>
+> Please migrate to **[`@capawesome/capacitor-app-shortcuts`](https://capawesome.io/plugins/app-shortcuts/)**, a free, well-maintained plugin that manages app shortcuts / quick actions with a superset of this plugin's features and current Capacitor support.
+>
+> `capacitor-app-actions` has been modernized to Capacitor 8 for existing users, but no new features are planned. New projects should use the plugin above.
+
 <p align="center">
-  <img src="https://img.shields.io/maintenance/yes/2026?style=flat-square" />
+  <img src="https://img.shields.io/maintenance/no/2026?style=flat-square" />
   <a href="https://github.com/uioporqwerty/capacitor-app-actions/actions?query=workflow%3A%22Plugin-CI%22"><img src="https://img.shields.io/github/actions/workflow/status/uioporqwerty/capacitor-app-actions/build.yml?branch=main&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/capacitor-app-actions"><img src="https://img.shields.io/npm/l/capacitor-app-actions?style=flat-square" /></a>
 <br>
