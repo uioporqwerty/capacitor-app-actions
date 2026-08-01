@@ -1,0 +1,31 @@
+ios/Sources/AppActionsPlugin/AppActionsPlugin.swift
+  s_dea26f5f9de4d0::t_003d29b9c07163 30-33
+  s_dea26f5f9de4d0::t_f6f96bddcf2db5 34-38
+src/definitions.ts
+  s_dea26f5f9de4d0::t_92c53411eddf26 12-17
+.github/workflows/build.yml
+  s_dea26f5f9de4d0::t_a5cac3e1ca28af 21,24
+README.md
+  s_dea26f5f9de4d0::t_84d50dfc93b704 46,62-64,67-68,70-72,74-78
+  s_dea26f5f9de4d0::t_e60c6064e9af84 42-45,47,50-61,65-66,69,73
+package.json
+  s_dea26f5f9de4d0::t_f347bd208499bc 3
+android/src/main/java/com/getcapacitor/community/appactions/AppActionsPlugin.kt
+  s_dea26f5f9de4d0::t_8180c62d47e932 6,20-23,28-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "61dd18890ac7058531213a22af578dd90df6ef77",
+  "prompts": {},
+  "sessions": {
+    "s_dea26f5f9de4d0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ec51941-ffa3-4865-8935-ecc0dd49b29f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Nitish Sachar <nitish@dastan.co>"
+    }
+  }
+}
