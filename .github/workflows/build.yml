@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
 name: Plugin-CI
+
+# Trusted Publishing (OIDC) requires an id-token so npm can verify this
+# workflow's identity instead of a long-lived NPM_TOKEN secret.
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build_publish:
     name: Build and Publish
@@ -16,9 +23,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+
+      # Trusted publishing needs npm CLI >= 11.5.1.
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - name: Set env
         if: startsWith( github.ref, 'refs/tags/')
@@ -26,10 +36,7 @@ jobs:
 
       - name: Set npm version
         if: startsWith( github.ref, 'refs/tags/')
-        run: |
-          git config --global user.email "nitish.sachar@pm.me"
-          git config --global user.name "Nitish Sachar"
-          npm version $RELEASE_VERSION --allow-same-version
+        run: npm version $RELEASE_VERSION --allow-same-version --no-git-tag-version
 
       - name: Install NPM Dependencies
         run: npm ci
@@ -37,8 +44,8 @@ jobs:
       - name: Build NPM Module
         run: npm run build
 
+      # No NPM_TOKEN: npm detects the OIDC environment and authenticates via
+      # the trusted publisher configured on npmjs.com for this package.
       - name: Publish to npm
         if: startsWith( github.ref, 'refs/tags/')
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
