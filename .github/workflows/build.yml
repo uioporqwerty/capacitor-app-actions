@@ -7,16 +7,112 @@ on:
     branches: [main]
 name: Plugin-CI
 
-# Trusted Publishing (OIDC) requires an id-token so npm can verify this
-# workflow's identity instead of a long-lived NPM_TOKEN secret.
 permissions:
   contents: read
-  id-token: write
 
 jobs:
-  build_publish:
-    name: Build and Publish
+  web:
+    name: Lint & build (web)
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run eslint
+      - run: npx prettier --check "src/**/*.ts" "*.mjs"
+      - run: npm run build
+
+  android-unit:
+    name: Android unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'npm'
+      # Installs @capacitor/android so the ':capacitor-android' Gradle project resolves.
+      - run: npm ci
+      - name: Run unit tests (Robolectric)
+        working-directory: android
+        run: ./gradlew test
+
+  ios-unit:
+    name: iOS unit tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run Swift package tests
+        run: |
+          DEVICE=$(xcrun simctl list devices available | grep -oE 'iPhone [0-9]+( Pro)?' | head -1)
+          echo "Using simulator: $DEVICE"
+          xcodebuild test \
+            -scheme CapacitorAppActions \
+            -destination "platform=iOS Simulator,name=$DEVICE"
+
+  android-e2e:
+    name: Android E2E (demo app)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout plugin
+        uses: actions/checkout@v5
+        with:
+          path: capacitor-app-actions
+      - name: Checkout demo app
+        uses: actions/checkout@v5
+        with:
+          repository: uioporqwerty/app-actions-demo
+          ref: master
+          path: app-actions-demo
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Build plugin
+        working-directory: capacitor-app-actions
+        run: npm ci && npm run build
+      - name: Install demo deps (links local plugin) and sync
+        working-directory: app-actions-demo
+        run: |
+          npm install
+          npx cap sync android
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run E2E on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            cd app-actions-demo/android && ./gradlew installDebug && cd ../..
+            bash capacitor-app-actions/scripts/e2e-android.sh
+
+  # Deploy is gated on all tests passing.
+  publish:
+    name: Build and Publish
+    needs: [web, android-unit, ios-unit, android-e2e]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Trusted Publishing (OIDC)
     steps:
       - uses: actions/checkout@v5
 
@@ -31,11 +127,9 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Set env
-        if: startsWith( github.ref, 'refs/tags/')
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Set npm version
-        if: startsWith( github.ref, 'refs/tags/')
         run: npm version $RELEASE_VERSION --allow-same-version --no-git-tag-version
 
       - name: Install NPM Dependencies
@@ -47,5 +141,4 @@ jobs:
       # No NPM_TOKEN: npm detects the OIDC environment and authenticates via
       # the trusted publisher configured on npmjs.com for this package.
       - name: Publish to npm
-        if: startsWith( github.ref, 'refs/tags/')
         run: npm publish --access public
