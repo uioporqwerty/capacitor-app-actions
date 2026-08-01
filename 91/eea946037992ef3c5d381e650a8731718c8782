@@ -1,0 +1,19 @@
+README.md
+  s_dea26f5f9de4d0::t_f6b894852cace5 9-15,17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "91eea946037992ef3c5d381e650a8731718c8782",
+  "prompts": {},
+  "sessions": {
+    "s_dea26f5f9de4d0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ec51941-ffa3-4865-8935-ecc0dd49b29f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "uioporqwerty <nitish.sachar@protonmail.com>"
+    }
+  }
+}
