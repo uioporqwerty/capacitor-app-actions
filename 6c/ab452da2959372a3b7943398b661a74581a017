@@ -1,0 +1,22 @@
+README.md
+  s_dea26f5f9de4d0::t_aa0f8f3d8064fb 10-11
+  s_dea26f5f9de4d0::t_f9d1f0097df34c 57-58,60-65,67,70-73
+package-lock.json
+  s_dea26f5f9de4d0::t_9bad9d7d7013a0 3,9,370-386,425-452,467-774,2371-2385
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "6cab452da2959372a3b7943398b661a74581a017",
+  "prompts": {},
+  "sessions": {
+    "s_dea26f5f9de4d0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ec51941-ffa3-4865-8935-ecc0dd49b29f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Nitish Sachar <nitish@dastan.co>"
+    }
+  }
+}
