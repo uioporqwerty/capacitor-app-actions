@@ -1,18 +1,26 @@
-import { PluginListenerHandle } from '@capacitor/core';
-import { AppAction } from './app-action';
+import type { PluginListenerHandle } from '@capacitor/core';
+
+import type { AppAction } from './app-action';
 
 export interface AddAppActionOptions {
-  actions: AppAction[]
+  actions: AppAction[];
 }
+
+/**
+ * Data passed to an app action listener when the action is triggered.
+ * App actions currently carry no additional payload.
+ */
+export type AppActionEvent = Record<string, unknown>;
 
 export interface AppActionsPlugin {
   /**
    * Set app actions for the app. Overrides any existing app actions.
    */
-  set(options: AddAppActionOptions): Promise<void>
+  set(options: AddAppActionOptions): Promise<void>;
 
   /**
-   * Listen for when an app action has been clicked by the user. actionId should match existing app actions.
+   * Listen for when an app action has been clicked by the user.
+   * `actionId` should match the `id` of an existing app action.
    */
-  addListener(actionId: string, listener: (info: any) => void) : Promise<PluginListenerHandle> & PluginListenerHandle
+  addListener(actionId: string, listener: (info: AppActionEvent) => void): Promise<PluginListenerHandle>;
 }

@@ -1,5 +1,4 @@
 import Foundation
-import Capacitor
 
 public struct AppAction {
     let id: String
