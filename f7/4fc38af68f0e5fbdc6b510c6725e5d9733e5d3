@@ -1,0 +1,24 @@
+android/build.gradle
+  s_dea26f5f9de4d0::t_088e6ca4d44198 33
+package.json
+  s_dea26f5f9de4d0::t_78de2ab9913a9a 3
+  s_dea26f5f9de4d0::t_7c06011553fe2a 12
+android/consumer-rules.pro
+  s_dea26f5f9de4d0::t_bdae7943f9e082 1-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "f74fc38af68f0e5fbdc6b510c6725e5d9733e5d3",
+  "prompts": {},
+  "sessions": {
+    "s_dea26f5f9de4d0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ec51941-ffa3-4865-8935-ecc0dd49b29f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "uioporqwerty <nitish.sachar@protonmail.com>"
+    }
+  }
+}
