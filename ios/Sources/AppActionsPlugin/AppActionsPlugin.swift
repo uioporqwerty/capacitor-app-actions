@@ -27,7 +27,15 @@ public class AppActionsPlugin: CAPPlugin, CAPBridgedPlugin {
         guard let actionId = notification.userInfo?["actionId"] as? String else {
             return
         }
-        self.notifyListeners(actionId, data: nil)
+        // retainUntilConsumed keeps the event until a JS listener subscribes.
+        // This handles the cold-launch case where the app is started *by* a
+        // quick action and the action is delivered before the web layer has
+        // had a chance to register its listeners.
+        //
+        // NOTE: the data must be non-nil. Capacitor stores retained events in
+        // an array, and passing `nil` with retainUntilConsumed crashes with
+        // "insert nil into array". Sending the actionId is both safe and useful.
+        self.notifyListeners(actionId, data: ["actionId": actionId], retainUntilConsumed: true)
     }
 
     @objc func set(_ call: CAPPluginCall) {

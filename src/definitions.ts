@@ -8,9 +8,13 @@ export interface AddAppActionOptions {
 
 /**
  * Data passed to an app action listener when the action is triggered.
- * App actions currently carry no additional payload.
  */
-export type AppActionEvent = Record<string, unknown>;
+export interface AppActionEvent {
+  /**
+   * The `id` of the app action that was triggered.
+   */
+  actionId: string;
+}
 
 export interface AppActionsPlugin {
   /**
